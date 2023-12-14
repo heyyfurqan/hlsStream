@@ -22,7 +22,7 @@ ffmpeg -i video.mp4 -filter_complex "[0:v]split=3[v1][v2][v3]; [v1]copy[v1out]; 
 -hls_segment_filename stream_%v/data%02d.ts \
 -var_stream_map "v:0,a:0 v:1,a:1 v:2,a:2" \
 -master_pl_name master.m3u8 \
-stream_%v/stream.m3u8****
+stream_%v/stream.m3u8
 ```
 ## 3- Test on live server
 Run the go server, then go to [http://localhost:8080/](http://localhost:8080/), and open the HTML file. It will play the hls file.

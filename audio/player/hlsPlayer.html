@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HLS Audio Player</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <video id="audioPlayer" controls></video>
+
+    <script>
+        if (Hls.isSupported()) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var hls = new Hls();
+            hls.loadSource('../segments/Prisoner/playlist.m3u8');
+            hls.attachMedia(audioPlayer);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                audioPlayer.play();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -8,23 +8,11 @@ import (
 )
 
 func CreateVideoSegments(inputFile string, outputDirectory string, resolutions []string, bitrates []string) {
-	// Get the base name of the input file
-	baseName := filepath.Base(inputFile)
-	// Remove the extension
-	baseName = baseName[:len(baseName)-len(filepath.Ext(baseName))]
-
-	// Create a new directory for this file's segments and playlist
-	fileOutputDirectory := filepath.Join(outputDirectory, baseName)
-	err := os.MkdirAll(fileOutputDirectory, 0755)
-	if err != nil {
-		log.Fatalf("Failed to create directory %s: %v", fileOutputDirectory, err)
-	}
-
 	for i, resolution := range resolutions {
 		bitrate := bitrates[i]
 
 		// Create a new directory for this resolution
-		resolutionOutputDirectory := filepath.Join(fileOutputDirectory, "stream_"+resolution)
+		resolutionOutputDirectory := filepath.Join(outputDirectory, "stream_"+resolution)
 		err := os.MkdirAll(resolutionOutputDirectory, 0755)
 		if err != nil {
 			log.Fatalf("Failed to create directory %s: %v", resolutionOutputDirectory, err)

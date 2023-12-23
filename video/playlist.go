@@ -14,7 +14,7 @@ func CreateMasterPlaylist(outputDirectory string, resolutions []string, bitrates
 
 	for i, resolution := range resolutions {
 		bitrate := bitrates[i]
-		playlistPath := "playlist_" + resolution + ".m3u8"
+		playlistPath := "stream_" + resolution + "/playlist.m3u8"
 
 		mediaPl, err := m3u8.NewMediaPlaylist(3, 3)
 		if err != nil {

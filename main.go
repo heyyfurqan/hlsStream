@@ -43,7 +43,13 @@ func main() {
 	} else {
 		for _, videoFile := range videoFiles {
 			inputFile := filepath.Join("video/storage", videoFile.Name())
-			outputDirectory := "video/segments"
+
+			// Get the base name of the video file
+			baseName := filepath.Base(inputFile)
+			// Remove the extension
+			baseName = baseName[:len(baseName)-len(filepath.Ext(baseName))]
+
+			outputDirectory := filepath.Join("video/segments", baseName)
 
 			// Create video segments
 			video.CreateVideoSegments(inputFile, outputDirectory, resolutions, bitrates)
